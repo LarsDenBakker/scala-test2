@@ -19,21 +19,21 @@ class CommandRunner(promise: Promise[Unit]) extends Actor {
 
   val personRepository = context.actorSelection("../personRepository")
 
-  personRepository ! CreateOperation(Person(UUID.randomUUID, "a", 1))
+//  personRepository ! CreateOperation(Person(UUID.randomUUID, "a", 1))
 
   var commands = Queue(
-    FindOneOperation(BSONDocument("name" -> "a")),
-    CreateOperation(Person(UUID.randomUUID, "a", 1)),
-    CreateOperation(Person(UUID.randomUUID, "b", 2)),
-    CreateOperation(Person(UUID.randomUUID, "c", 3)),
-    CreateOperation(Person(UUID.randomUUID, "d", 4)),
-    FindOperation(None, None),
-    DeleteOperation(Some(BSONDocument("name" -> "a"))),
-    FindOneOperation(BSONDocument("name" -> "a")),
-    FindOperation(None, None),
-    DeleteOperation(Some(BSONDocument("naarewame" -> "a"))),
-    FindOperation(None, Some(2)),
-    FindOperation(Some(BSONDocument("rewrwer" -> "a")), None)
+//    FindOneOperation(BSONDocument("name" -> "a")),
+//    CreateOperation(Person(UUID.randomUUID, "a", 1)),
+//    CreateOperation(Person(UUID.randomUUID, "b", 2)),
+//    CreateOperation(Person(UUID.randomUUID, "c", 3)),
+//    CreateOperation(Person(UUID.randomUUID, "d", 4)),
+//    FindOperation(None, None),
+//    DeleteOperation(Some(BSONDocument("name" -> "a"))),
+//    FindOneOperation(BSONDocument("name" -> "a")),
+//    FindOperation(None, None),
+//    DeleteOperation(Some(BSONDocument("naarewame" -> "a"))),
+//    FindOperation(None, Some(2)),
+//    FindOperation(Some(BSONDocument("rewrwer" -> "a")), None)
   )
 
   private def executeNext() = {

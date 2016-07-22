@@ -1,5 +1,7 @@
 package com.larscode.testscala2
 
+import java.util.UUID
+
 import akka.actor.Props
 import com.larscode.testscala2.person.Person
 import com.larscode.testscala2.repository.MongoRepository
@@ -18,17 +20,19 @@ object Main {
   val COLLECTION_CHARACTERS = "characters"
 
   def main(args: Array[String]): Unit = {
-    val driver = new MongoDriver
-    val connection = driver.connection(List("localhost"))
-    val db = connection.database("test8")
-    val pc = db.map(_.collection[BSONCollection]("persons"))
-    val finished = Promise[Unit]
-    pc.map(pc => {
-      driver.system.actorOf(Props(new MongoRepository[Person](pc)), "personRepository")
-      driver.system.actorOf(Props(new CommandRunner(finished)))
-    })
-
-    Await.result(finished.future, 1 minute)
+    //    val driver = new MongoDriver
+    //    val connection = driver.connection(List("localhost"))
+    //    val db = connection.database("test8")
+    //    val pc = db.map(_.collection[BSONCollection]("persons"))
+    //    val finished = Promise[Unit]
+    //    pc.map(pc => {
+    //      driver.system.actorOf(Props(new MongoRepository[Person](pc)), "personRepository")
+    //      driver.system.actorOf(Props(new CommandRunner(finished)))
+    //    })
+    //    Await.result(finished.future, 1 minute)
+    val ret = Person.of(BSONDocument("name" -> "a", "age" -> 5))
+    val ret2 = Person.validate(Person("erer2ewrwerwerwerwerwerw3r3", 2))
+    println(s"ret: $ret ret2: $ret2")
   }
 
 }
